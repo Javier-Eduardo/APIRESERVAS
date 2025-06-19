@@ -171,6 +171,17 @@ app.post(`${apiPrefix}/login`, (req, res) => {
   });
 });
 
+// METODO GET PARA OBTENER VUELOS
+app.get(`${apiPrefix}/vuelos`, (req, res) => {
+  const sql = 'SELECT * FROM vuelos';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('❌ Error al obtener vuelos:', err.message);
+      return res.status(500).json({ error: 'Error al obtener vuelos' });
+    }
+    res.json(results);
+  });
+});
 
 // ==============================
 // Servidor iniciado
